@@ -6,6 +6,7 @@ const verifyEmailService = async (req) => {
   try {
     let email = req.params.email;
     let OTPCode = Math.floor(100000 + Math.random() * 900000);
+
     let matchStage = { $match: { email: email } };
     let countStage = { $count: "total" };
     let userCount = await userModel.aggregate([matchStage, countStage]);
@@ -15,6 +16,7 @@ const verifyEmailService = async (req) => {
       await otpModel.create({ email: email, otp: OTPCode });
 
       let emailText = `Your PIN Code is = ${OTPCode} `;
+      console.log(emailText);
       let emailSubject = `Inventory Management PIN Verificatoion`;
       let sendEmail = await emailUtility(email, emailText, emailSubject);
 

@@ -1,5 +1,6 @@
 const categoryModel = require("../../models/categories/categoriesModel");
 const createService = require("../../services/common/createService");
+const deleteService = require("../../services/common/deleteService");
 const dropDownService = require("../../services/common/dropDownService");
 const lisetService = require("../../services/common/listService");
 const updateService = require("../../services/common/updateService");
@@ -11,6 +12,11 @@ exports.createCategory = async (req, res) => {
 
 exports.updateCategory = async (req, res) => {
   let result = await updateService(req, categoryModel);
+  res.status(200).json(result);
+};
+
+exports.deleteCategory = async (req, res) => {
+  let result = await deleteService(req, categoryModel);
   res.status(200).json(result);
 };
 

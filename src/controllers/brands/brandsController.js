@@ -25,3 +25,8 @@ exports.brandList = async (req, res) => {
   let result = await lisetService(req, brandModel, searchArray);
   res.status(200).json(result);
 };
+
+exports.deleteBrand = async (req, res) => {
+  let result = await deleteService(req, brandModel);
+  res.status(200).json(result);
+};

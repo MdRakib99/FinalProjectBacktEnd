@@ -14,16 +14,20 @@ const {
   updateBrand,
   brandList,
   brandDropDown,
+  deleteBrand,
 } = require("../controllers/brands/brandsController");
 const {
   createCategory,
   updateCategory,
   categoryDropDown,
   categoryList,
+  deleteCategory,
 } = require("../controllers/categories/categoriesController");
 const {
   createProduct,
   updateProduct,
+  productList,
+  deleteProducts,
 } = require("../controllers/products/productsController");
 
 const router = express.Router();
@@ -41,6 +45,7 @@ router.post("/recoverResetPass", recoverResetPass);
 //Brands
 router.post("/createBrand", authVerifyMiddleware, createBrand);
 router.post("/updateBrand/:id", authVerifyMiddleware, updateBrand);
+router.delete("/deleteBrand/:id", authVerifyMiddleware, deleteBrand);
 router.get(
   "/brandList/:pageNo/:perPage/:searchKeyword",
   authVerifyMiddleware,
@@ -51,6 +56,7 @@ router.get("/brandDropDown", authVerifyMiddleware, brandDropDown);
 //Categories
 router.post("/createCategory", authVerifyMiddleware, createCategory);
 router.post("/updateCategory/:id", authVerifyMiddleware, updateCategory);
+router.delete("/deleteCategory/:id", authVerifyMiddleware, deleteCategory);
 router.get(
   "/categoryList/:pageNo/:perPage/:searchKeyword",
   authVerifyMiddleware,
@@ -63,3 +69,10 @@ module.exports = router;
 
 router.post("/createProduct", authVerifyMiddleware, createProduct);
 router.post("/updateProduct/:id", authVerifyMiddleware, updateProduct);
+router.get(
+  "/productList/:pageNo/:perPage/:searchKeyword",
+  authVerifyMiddleware,
+  productList
+);
+
+router.delete("/deleteProduct/:id", authVerifyMiddleware, deleteProducts);
